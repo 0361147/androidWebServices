@@ -29,7 +29,6 @@ public class MusicAdapter extends RecyclerView.Adapter<MusicAdapter.MusicViewHol
 
     @Override
     public void onBindViewHolder(MusicViewHolder holder, int position) {
-        holder.idMusic.setText(dataList.get(position).getIdMusic());
         holder.name.setText(dataList.get(position).getName());
     }
 
@@ -39,12 +38,11 @@ public class MusicAdapter extends RecyclerView.Adapter<MusicAdapter.MusicViewHol
     }
 
     public class MusicViewHolder extends RecyclerView.ViewHolder{
-        private TextView idMusic, name;
+        private TextView name;
 
         public MusicViewHolder(View itemView) {
             super(itemView);
-            idMusic = itemView.findViewById(R.id.idMusic);
-            name =  itemView.findViewById(R.id.name);
+            name =  itemView.findViewById(R.id.fileName);
         }
     }
 }

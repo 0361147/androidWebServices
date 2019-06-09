@@ -14,13 +14,10 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/idMusic"
+            android:id="@+id/fileName"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-
-        <TextView
-            android:id="@+id/name"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+            android:textSize="24sp" />
     </LinearLayout>
 </android.support.v7.widget.CardView>

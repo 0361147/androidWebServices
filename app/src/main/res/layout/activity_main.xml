@@ -16,13 +16,6 @@
             android:layout_height="wrap_content"
             android:orientation="vertical" >
 
-            <Button
-                android:id="@+id/browse"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:onClick="browseFile"
-                android:text="Browse" />
-
             <ProgressBar
                 android:id="@+id/rcProgress"
                 style="?android:attr/progressBarStyle"
