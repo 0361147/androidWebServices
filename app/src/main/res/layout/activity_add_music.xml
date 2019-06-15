@@ -36,8 +36,75 @@
                     android:layout_marginEnd="20sp"
                     android:layout_marginRight="10sp"
                     android:layout_marginBottom="10sp"
-                    android:hint="FIle Name" />
+                    android:hint="Name" />
             </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <android.support.design.widget.TextInputEditText
+                    android:id="@+id/album"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20sp"
+                    android:layout_marginLeft="20sp"
+                    android:layout_marginTop="30sp"
+                    android:layout_marginEnd="20sp"
+                    android:layout_marginRight="10sp"
+                    android:layout_marginBottom="10sp"
+                    android:hint="Nama Album" />
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <android.support.design.widget.TextInputEditText
+                    android:id="@+id/penyanyi"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20sp"
+                    android:layout_marginLeft="20sp"
+                    android:layout_marginTop="30sp"
+                    android:layout_marginEnd="20sp"
+                    android:layout_marginRight="10sp"
+                    android:layout_marginBottom="10sp"
+                    android:hint="Penyanyi" />
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <android.support.design.widget.TextInputEditText
+                    android:id="@+id/tahun"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20sp"
+                    android:layout_marginLeft="20sp"
+                    android:layout_marginTop="30sp"
+                    android:layout_marginEnd="20sp"
+                    android:layout_marginRight="10sp"
+                    android:layout_marginBottom="10sp"
+                    android:hint="Tahun" />
+            </android.support.design.widget.TextInputLayout>
+
+            <Button
+                android:id="@+id/cover"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20sp"
+                android:layout_marginLeft="20sp"
+                android:layout_marginTop="5sp"
+                android:layout_marginEnd="20sp"
+                android:layout_marginRight="20sp"
+                android:layout_marginBottom="15sp"
+                android:backgroundTint="@android:color/holo_blue_light"
+                android:onClick="browseCover"
+                android:text="Browse Cover"
+                android:textColor="#FFFFFF"
+                android:textColorHint="#00FFFFFF" />
 
             <Button
                 android:id="@+id/browse"
@@ -49,17 +116,26 @@
                 android:layout_marginEnd="20sp"
                 android:layout_marginRight="20sp"
                 android:layout_marginBottom="15sp"
+                android:backgroundTint="@android:color/holo_green_light"
                 android:onClick="browseMusic"
-                android:text="Browse" />
+                android:text="Browse Music"
+                android:textColor="#FFFFFF" />
 
             <Button
                 android:id="@+id/save"
                 style="@style/Widget.AppCompat.Button.Small"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="5sp"
+                android:layout_marginStart="20sp"
+                android:layout_marginLeft="20sp"
+                android:layout_marginTop="5sp"
+                android:layout_marginEnd="20sp"
+                android:layout_marginRight="20sp"
+                android:layout_marginBottom="15sp"
+                android:backgroundTint="@color/design_default_color_primary"
                 android:onClick="postMusic"
-                android:text="Add" />
+                android:text="Add"
+                android:textColor="#FFFFFF" />
         </LinearLayout>
     </ScrollView>
 </android.support.constraint.ConstraintLayout>

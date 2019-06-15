@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.net.Uri;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -47,6 +48,7 @@ public class MainActivity extends AppCompatActivity {
     RecyclerView rcMusic;
     ProgressBar rcProgress;
     MediaPlayer audioPlayer = null;
+    FloatingActionButton fab;
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -57,11 +59,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.addMusic:
-                Intent intent = new Intent(getApplicationContext(), AddMusic.class);
-                startActivityForResult(intent, 2);
-                break;
-
             case R.id.refreshMusic:
                 setMusicAdapter();
                 break;
@@ -73,15 +70,24 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.main_warpper);
 
         rcMusic = findViewById(R.id.rcMusic);
         rcProgress = findViewById(R.id.rcProgress);
+        fab = findViewById(R.id.fab);
 
         musicAdapter = new MusicAdapter(musicList);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
         rcMusic.setLayoutManager(layoutManager);
         rcMusic.setAdapter(musicAdapter);
+
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), AddMusic.class);
+                startActivityForResult(intent, 2);
+            }
+        });
 
         rcMusic.addOnItemTouchListener(new RecyclerItemClickListener(getApplicationContext(), rcMusic, new RecyclerItemClickListener.OnItemClickListener() {
             @Override
@@ -219,6 +225,9 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(getApplicationContext(), UpdateMusic.class);
         intent.putExtra("idMusic", music.getIdMusic());
         intent.putExtra("name", music.getName());
+        intent.putExtra("album", music.getAlbum());
+        intent.putExtra("penyanyi", music.getPenyanyi());
+        intent.putExtra("tahun", music.getTahun());
         startActivityForResult(intent, 2);
     }
 }

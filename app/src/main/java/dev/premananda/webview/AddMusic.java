@@ -16,6 +16,8 @@ import android.widget.Toast;
 
 import java.io.File;
 
+import javax.sql.StatementEvent;
+
 import dev.premananda.webview.API.APIInterface;
 import dev.premananda.webview.API.Config;
 import dev.premananda.webview.Model.Music;
@@ -29,11 +31,11 @@ import retrofit2.Response;
 
 public class AddMusic extends AppCompatActivity {
 
-    EditText fileName;
-    Button browse;
+    EditText fileName, album, penyanyi, tahun;
+    Button browse, cover;
     Button save;
     ProgressBar progress;
-    File selectedFile;
+    File selectedFile, selectedCover;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,10 +46,14 @@ public class AddMusic extends AppCompatActivity {
         browse = findViewById(R.id.browse);
         save = findViewById(R.id.save);
         progress = findViewById(R.id.progress);
+        album = findViewById(R.id.album);
+        penyanyi = findViewById(R.id.penyanyi);
+        tahun = findViewById(R.id.tahun);
+        cover = findViewById(R.id.cover);
 
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
-            actionBar.setTitle("");
+            actionBar.setTitle("Add Music");
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
     }
@@ -72,6 +78,9 @@ public class AddMusic extends AppCompatActivity {
                 fileName.setText(name.substring(0, name.lastIndexOf('.')));
             }
         }
+        if (resultCode == Activity.RESULT_OK && requestCode == 2) {
+            selectedCover = new File(PathUtil.getPathFromUri(getApplicationContext(), data.getData()));
+        }
     }
 
     public void browseMusic(View view) {
@@ -81,6 +90,13 @@ public class AddMusic extends AppCompatActivity {
         startActivityForResult(intent, 1);
     }
 
+    public void browseCover(View view) {
+        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+        intent.addCategory(Intent.CATEGORY_OPENABLE);
+        intent.setType("image/*");
+        startActivityForResult(intent, 2);
+    }
+
     public void postMusic(View view) {
         Toast.makeText(getApplicationContext(), "Uploading...", Toast.LENGTH_SHORT).show();
         save.setEnabled(false);
@@ -88,6 +104,9 @@ public class AddMusic extends AppCompatActivity {
 
         APIInterface client = Config.getClient();
         String name = fileName.getText().toString();
+        String albumVal = album.getText().toString();
+        String penyanyiVal = penyanyi.getText().toString();
+        String tahunVal = tahun.getText().toString();
 
         RequestBody fileReqBody = RequestBody.create(MediaType.parse("audio/*"), selectedFile);
         MultipartBody.Part part = MultipartBody.Part.createFormData(
@@ -96,7 +115,14 @@ public class AddMusic extends AppCompatActivity {
                 fileReqBody
         );
 
-        Call<Music> call = client.postMusic(name, part);
+        RequestBody fileReqBody2 = RequestBody.create(MediaType.parse("image/*"), selectedCover);
+        MultipartBody.Part part2 = MultipartBody.Part.createFormData(
+                "image",
+                selectedCover.getName(),
+                fileReqBody2
+        );
+
+        Call<Music> call = client.postMusic(name, albumVal, penyanyiVal, tahunVal, part2, part);
         Log.d("Name", name);
         call.enqueue(new Callback<Music>() {
             @Override

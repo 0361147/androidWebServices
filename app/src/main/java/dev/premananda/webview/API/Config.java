@@ -5,8 +5,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class Config {
 
-    public  static String FILE_URL = "http://192.168.1.67/music/";
-    public static String BASE_URL = "http://192.168.1.67/music/api/";
+    public  static String FILE_URL = "http://192.168.1.67/musicFull/";
+    public static String BASE_URL = "http://192.168.1.67/musicFull/api/";
     private static Retrofit retrofit;
 
     public static Retrofit initReftofit() {

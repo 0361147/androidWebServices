@@ -22,7 +22,7 @@ import retrofit2.Response;
 
 public class UpdateMusic extends AppCompatActivity {
 
-    EditText fileName;
+    EditText fileName, album, penyanyi, tahun;
     ProgressBar progress;
     Button save;
     String idMusic;
@@ -36,13 +36,19 @@ public class UpdateMusic extends AppCompatActivity {
         fileName = findViewById(R.id.fileName);
         progress = findViewById(R.id.progress);
         save = findViewById(R.id.save);
+        album = findViewById(R.id.album);
+        penyanyi = findViewById(R.id.penyanyi);
+        tahun = findViewById(R.id.tahun);
         intentData = getIntent();
         fileName.setText(intentData.getStringExtra("name"));
+        album.setText(intentData.getStringExtra("album"));
+        penyanyi.setText(intentData.getStringExtra("penyanyi"));
+        tahun.setText(intentData.getStringExtra("tahun"));
         idMusic = intentData.getStringExtra("idMusic");
 
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
-            actionBar.setTitle("");
+            actionBar.setTitle("Update Music");
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
     }
@@ -65,9 +71,13 @@ public class UpdateMusic extends AppCompatActivity {
 
         String idMusic = intentData.getStringExtra("idMusic");
         String newName = fileName.getText().toString();
+        String newAlbum = album.getText().toString();
+        String newPenyanyi = penyanyi.getText().toString();
+        String newTahun = tahun.getText().toString();
+
 
         APIInterface client = Config.getClient();
-        Call<ResponseBody> updateMusic = client.updateMusic(idMusic, newName);
+        Call<ResponseBody> updateMusic = client.updateMusic(idMusic, newName, newAlbum, newPenyanyi, newTahun);
 
         updateMusic.enqueue(new Callback<ResponseBody>() {
             @Override

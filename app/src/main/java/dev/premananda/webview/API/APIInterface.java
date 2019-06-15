@@ -23,6 +23,10 @@ public interface APIInterface {
     @POST("music.php")
     Call<Music> postMusic(
             @Part("name") String name,
+            @Part("album") String album,
+            @Part("penyanyi") String penyanyi,
+            @Part("tahun") String tahun,
+            @Part MultipartBody.Part image,
             @Part MultipartBody.Part files
     );
 
@@ -30,7 +34,10 @@ public interface APIInterface {
     @FormUrlEncoded
     Call<ResponseBody> updateMusic(
             @Field("idMusic") String idMusic,
-            @Field("name") String name
+            @Field("name") String name,
+            @Field("album") String album,
+            @Field("penyanyi") String penyanyi,
+            @Field("tahun") String tahun
     );
 
     @FormUrlEncoded

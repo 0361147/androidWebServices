@@ -7,9 +7,4 @@
         android:title="Compose"
         app:showAsAction="ifRoom"></item>
 
-    <item
-        android:id="@+id/addMusic"
-        android:icon="@drawable/ic_add_white_24dp"
-        android:title="Compose"
-        app:showAsAction="ifRoom"></item>
 </menu>
