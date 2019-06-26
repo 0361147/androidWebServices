@@ -50,12 +50,15 @@ public class MainActivity extends AppCompatActivity {
     MediaPlayer audioPlayer = null;
     FloatingActionButton fab;
 
+    // function for add toolbar button
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.main_menu, menu);
         return true;
     }
 
+
+    // function to run when toolbar button clicked
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
@@ -76,11 +79,13 @@ public class MainActivity extends AppCompatActivity {
         rcProgress = findViewById(R.id.rcProgress);
         fab = findViewById(R.id.fab);
 
+        // set music adapter for recycle view
         musicAdapter = new MusicAdapter(musicList);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
         rcMusic.setLayoutManager(layoutManager);
         rcMusic.setAdapter(musicAdapter);
 
+        // funciton listener for floation button click
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -89,6 +94,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        // function handler for recycle view click and long click
         rcMusic.addOnItemTouchListener(new RecyclerItemClickListener(getApplicationContext(), rcMusic, new RecyclerItemClickListener.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
